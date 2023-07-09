@@ -1,0 +1,138 @@
+package projectAsiignment;
+
+public class CarEngine {
+	String name;
+	double cost;
+
+}
+
+
+package projectAsiignment;
+
+public class PoloHighline extends CarEngine{
+	public PoloHighline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+
+public class PoloTrendline extends CarEngine {
+	public PoloTrendline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+
+public class TaigunHighline extends CarEngine{
+	public TaigunHighline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+
+public class TaigunTopline extends CarEngine{
+	public TaigunTopline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+
+public class TaigunTrendline extends CarEngine{
+	public TaigunTrendline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+
+public class VirtusHighline extends CarEngine{
+	public VirtusHighline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+
+public class VirtusTrendline extends CarEngine{
+	public VirtusTrendline(String name,double cost) {
+		super.name = name;
+		super.cost = cost;
+	}
+}
+
+
+package projectAsiignment;
+import java.util.*;
+public class ShowRoom {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please select the CarModel from the given below list : ");
+		System.out.println("1.Polo Trendline\n2.Polo Highline\n3.Virtus Trendline\n4.Virtus Highline\n5.Taigun Trendline\n6.Taigun Highline\n7.Taigun Topline");
+		int opt = sc.nextInt();
+		long bill = 0;
+		CarEngine model = null;
+		switch(opt) {
+		case 1:model = new PoloTrendline("PoloTrendline",870000);
+		break;
+		case 2:model = new PoloHighline("PoloHighline",1009000);
+		break;
+		case 3:model = new VirtusTrendline("VirtusTrendline",1105000);
+		break;
+		case 4:model = new VirtusHighline("VirtusHighline",1308000);
+		break;
+		case 5:model = new TaigunTrendline("TaigunTrendline",1489000);
+		break;
+		case 6:model = new TaigunHighline("TaigunHighline",1542000);
+		break;
+		case 7:model = new TaigunTopline("TaigunTopline",1771000);
+		break;
+		}
+		
+		System.out.println("Do you need Insurance: yes/no");
+		String ins = sc.next();
+		System.out.println("Do You need Additional Accessories: yes/no");
+		String acs = sc.next();
+		if(ins.toLowerCase().charAt(0) == 'y') {
+			bill += 47300;
+		}
+		
+		if(acs.toLowerCase().charAt(0) == 'y') {
+			bill += 15000;
+		}
+		
+		if(bill==0) {
+			System.out.println("None of the additional features have added so 0 discount is applied.");
+		} else {
+			System.out.println("Enter Car Dealer Discount percentage : ");
+			double dis = sc.nextDouble();
+			double dis_amt = model.cost * (dis/100);
+			if(dis_amt>30000) {
+				System.out.println("maximum discount to be applied should not cross 30,000 and only apply 30,000 as discount");
+				return;
+			}
+			bill -= dis_amt;
+		}
+		
+		bill += model.cost+113990+11000;
+		System.out.println("Total Cost = "+bill);
+	}
+
+}
