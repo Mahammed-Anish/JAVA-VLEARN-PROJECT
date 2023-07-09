@@ -1,0 +1,56 @@
+package rentARide;
+
+public class RentARide implements Comparable<RentARide>{
+	String driver;
+	String carModel;
+	double rating;
+	int distance;
+	
+	public RentARide(String driver, String carModel, double rating, int distance) {
+		this.driver = driver;
+		this.carModel = carModel;
+		this.rating = rating;
+		this.distance = distance;
+	}
+	
+	public int compareTo(RentARide rr) {
+		return this.distance - rr.distance;
+	}
+}
+
+
+package rentARide;
+import java.util.*;
+
+public class BookingDetails {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		PriorityQueue<RentARide> pq = new PriorityQueue<>();
+		pq.add(new RentARide("A", "Sedan", 4, 500));
+		pq.add(new RentARide("B", "HatchBack", 4.1, 1));
+		pq.add(new RentARide("C", "5 Seater", 4.8, 200));
+		pq.add(new RentARide("D", "Sedan", 4.1, 700));
+		pq.add(new RentARide("E", "HatchBack", 4.7, 430));
+		
+		System.out.println("List of Available Car Models are : \n1. Sedan\n2. HatchBack\n3. 5 Seater\n");
+		System.out.println("Enter Ride Distance: ");
+		int distance = sc.nextInt();
+		System.out.println("Enter Car Model You Want to Ride: ");
+		String carModel = sc.next();
+		carModel = carModel.toLowerCase();
+		
+		for(int i=0;i<5;i++) {
+			RentARide val = pq.remove();
+			if(carModel.equals(val.carModel.toLowerCase()) && val.rating>=4) {
+				System.out.println("Driver "+val.driver+" will get you to the destination");
+				System.out.println("Your Charge Will be : "+distance*8);
+				return;
+			}
+		}
+		
+		System.out.println("Sorry You Preferred Car Model is not Available");
+	}
+
+}
